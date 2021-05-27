@@ -7,7 +7,7 @@ const enemyAttackDescNode = document.getElementById("combat-enemy-attack-speed-d
 const activePrayersNode = document.getElementById("combat-player-active-prayers");
 const protectFromRangedPrayerNode = document.getElementById("combat-prayer-16");
 const protectFromeRangedPrayerBtn = document.getElementById("prayer-select-16");
-const attack = "Using Shockwave:";
+const attack = "shockwave";
 
 // For some reason the console.log function inside the observable callback is going insane. Make sure it only checks once per second
 let currentTime = Date.now();
@@ -19,8 +19,8 @@ const checkEnemyAttack = function(mutationsList, observer) {
   
   currentTime = Date.now();
   if (currentTime > nextPublishTime) {
-    if (mutationsList[0].target.innerText === attack) {
-      console.log("Enemies attack is now Shockwave");
+    if (mutationsList[0].target.innerText.toLowerCase().includes(attack)) {
+      console.log(`Enemies attack is now  ${attack}`);
 
       // Check protectFromRangedPrayerNode does have class d-none before toggling on
       if (protectFromRangedPrayerNode.classList.contains("d-none")) {
